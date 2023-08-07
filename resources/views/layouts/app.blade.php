@@ -34,6 +34,10 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
 
+                    <a class="nav-link" href="{{ URL::to('developers') }}">{{ __('Developers') }}</a>
+                    <a class="nav-link" href="{{ URL::to('statuses') }}">{{ __('Statuses') }}</a>
+                    <a class="nav-link" href="{{ URL::to('tasks') }}">{{ __('Tasks') }}</a>
+
                     </ul>
 
                     <!-- Right Side Of Navbar -->
