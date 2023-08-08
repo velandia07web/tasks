@@ -41,6 +41,8 @@
 										<th>End Date</th>
 										<th>Developer</th>
 										<th>Statuses</th>
+                                        <th>fecha_inicio</th>
+										<th>subir_archivos</th>
 
                                         <th></th>
                                     </tr>
@@ -55,6 +57,8 @@
 											<td>{{ $task->end_date }}</td>
 											<td>{{ $task->developer }}</td>
 											<td>{{ $task->statuses }}</td>
+                                            <td>{{ $task->fecha_inicio }}</td>
+											<td>{{ $task->subir_archivos }}</td>
 
                                             <td>
                                                 <form action="{{ route('tasks.destroy',$task->id) }}" method="POST">

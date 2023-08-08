@@ -46,7 +46,17 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        request()->validate(Task::$rules);
+        request()->validate(Task::$rules,[
+            'fecha_inicio' => 'nullable|string',
+            'subir_archivos' => 'nullable|string',
+        ]);
+
+        if ($request->hasFile('subir_archivos')) {
+            $archivo = $request->file('subir_archivos');
+            $nombreArchivo = $archivo->getClientOriginalName(); // Obtener el nombre original del archivo
+            $path = $archivo->storeAs('archivos', $nombreArchivo, 'public'); // Almacenar el archivo con su nombre original
+            $validatedData['subir_archivos'] = $path; // Almacenar la ruta del archivo en la base de datos
+        }
 
         $task = Task::create($request->all());
 

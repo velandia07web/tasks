@@ -20,8 +20,11 @@ class TasksTable extends Migration
             /* $table->string('id_developer');
             $table->string('id_statuses'); */
             $table->string('end_date');
+            $table->string('fecha_inicio')->nullable(); // Agregar campo 'fecha_inicio'
+            $table->text('subir_archivos'); // Agregar campo 'subir_archivos'
             $table->timestamps();
-
+            /*$table->string('fecha inicio ');
+            $table->string('subir archivos');*/
 
             $table->foreignId('developer')
                   ->nullable()
@@ -34,6 +37,9 @@ class TasksTable extends Migration
                   ->constrained('statuses')
                   ->cascadeOnUpdate()
                   ->nullOnDelete();
+
+
+            
 
                   
         });

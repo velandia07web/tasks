@@ -40,6 +40,14 @@
                             <strong>Statuses:</strong>
                             {{ $task->statuses }}
                         </div>
+                        <div class="form-group">
+                            <strong>Statuses:</strong>
+                            {{ $task->fecha_inicio }}
+                        </div>
+                        <div class="form-group">
+                            <strong>Statuses:</strong>
+                            {{ $task->subir_archivos }}
+                        </div>
 
                     </div>
                 </div>

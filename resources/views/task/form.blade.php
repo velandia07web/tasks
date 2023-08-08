@@ -36,6 +36,15 @@
             </select>
         </div>
 
+        <div class="form-group">
+            {{ Form::label('fecha_inicio') }}
+            {{ Form::text('fecha_inicio', $task->fecha_inicio, ['class' => 'form-control' . ($errors->has('fecha_inicio') ? ' is-invalid' : ''), 'placeholder' => 'fecha_inicio']) }}
+            {!! $errors->first('fecha_inicio', '<div class="invalid-feedback">:message</div>') !!}
+        </div>
+        <form method="POST" action="{{ route('tasks.store') }}" enctype="multipart/form-data">
+            <input type="file" name="subir_archivos">
+        </form>
+
 
 
     </div>
