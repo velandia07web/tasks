@@ -19,6 +19,7 @@ class StatusController extends Controller
     public function index()
     {
         $statuses = Status::paginate();
+        $statuses1 = Status::all();
 
         return view('status.index', compact('statuses'))
             ->with('i', (request()->input('page', 1) - 1) * $statuses->perPage());

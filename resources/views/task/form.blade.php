@@ -1,3 +1,7 @@
+
+@extends('layouts.app')
+
+
 <div class="box box-info padding-1">
     <div class="box-body">
         
@@ -21,11 +25,18 @@
             {{ Form::text('developer', $task->developer, ['class' => 'form-control' . ($errors->has('developer') ? ' is-invalid' : ''), 'placeholder' => 'Developer']) }}
             {!! $errors->first('developer', '<div class="invalid-feedback">:message</div>') !!}
         </div>
+        
+
         <div class="form-group">
-            {{ Form::label('statuses') }}
-            {{ Form::text('statuses', $task->statuses, ['class' => 'form-control' . ($errors->has('statuses') ? ' is-invalid' : ''), 'placeholder' => 'Statuses']) }}
-            {!! $errors->first('statuses', '<div class="invalid-feedback">:message</div>') !!}
+            <label for="statuses_id">Estados</label>
+            <select name="statuses" id="" class="form-control" required > 
+                @foreach ($statuses as $status)
+                    <option value="{{ $status -> id }}">{{ $status -> status }}</option>
+                @endforeach
+            </select>
         </div>
+
+
 
     </div>
     <div class="box-footer mt20">

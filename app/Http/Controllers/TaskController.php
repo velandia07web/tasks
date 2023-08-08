@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Status;
 use App\Models\Task;
 use Illuminate\Http\Request;
 
@@ -19,10 +19,12 @@ class TaskController extends Controller
     public function index()
     {
         $tasks = Task::paginate();
-
+        
         return view('task.index', compact('tasks'))
             ->with('i', (request()->input('page', 1) - 1) * $tasks->perPage());
     }
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -32,7 +34,8 @@ class TaskController extends Controller
     public function create()
     {
         $task = new Task();
-        return view('task.create', compact('task'));
+        $statuses = Status::all();
+        return view('task.create', compact('task', 'statuses'));
     }
 
     /**
@@ -73,8 +76,8 @@ class TaskController extends Controller
     public function edit($id)
     {
         $task = Task::find($id);
-
-        return view('task.edit', compact('task'));
+        $statuses = Status::all();
+        return view('task.edit', compact('task', 'statuses'));
     }
 
     /**
