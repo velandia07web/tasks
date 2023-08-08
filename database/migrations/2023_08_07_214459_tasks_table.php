@@ -17,6 +17,8 @@ class TasksTable extends Migration
             $table->id();
             $table->string('title');
             $table->string('description');
+            /* $table->string('id_developer');
+            $table->string('id_statuses'); */
             $table->string('end_date');
             $table->timestamps();
 

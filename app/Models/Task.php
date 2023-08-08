@@ -28,6 +28,8 @@ class Task extends Model
 		'title' => 'required',
 		'description' => 'required',
 		'end_date' => 'required',
+        'developer' => 'required',
+        'statuses' => 'required',
     ];
 
     protected $perPage = 20;
@@ -45,7 +47,7 @@ class Task extends Model
      */
     public function developer()
     {
-        return $this->hasOne('App\Models\Developer', 'id', 'developer');
+        return $this->belongsTo('App\Models\Developer', 'id', 'developer');
     }
     
     /**
@@ -53,7 +55,7 @@ class Task extends Model
      */
     public function status()
     {
-        return $this->hasOne('App\Models\Status', 'id', 'statuses');
+        return $this->belongsTo('App\Models\Status', 'id', 'statuses');
     }
     
 

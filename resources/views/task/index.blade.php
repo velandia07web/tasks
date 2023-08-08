@@ -28,7 +28,7 @@
                             <p>{{ $message }}</p>
                         </div>
                     @endif
-
+                    
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-striped table-hover">
