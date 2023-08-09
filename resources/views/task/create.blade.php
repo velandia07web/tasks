@@ -3,6 +3,7 @@
 @section('template_title')
     {{ __('Create') }} Task
 @endsection
+<script src="{{ asset('js/flatpickr.js') }}"></script>
 
 @section('content')
     <section class="content container-fluid">

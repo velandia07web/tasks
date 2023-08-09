@@ -1,4 +1,5 @@
 @extends('layouts.app')
+<script src="{{ asset('js/app.js') }}" defer></script>
 
 @section('template_title')
     {{ __('Create') }} Status

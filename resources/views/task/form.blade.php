@@ -17,7 +17,7 @@
         </div>
         <div class="form-group">
             {{ Form::label('end_date') }}
-            {{ Form::text('end_date', $task->end_date, ['class' => 'form-control' . ($errors->has('end_date') ? ' is-invalid' : ''), 'placeholder' => 'End Date']) }}
+            {{ Form::text('end_date', $task->end_date, ['class' => 'form-control flatpickr' . ($errors->has('end_date') ? ' is-invalid' : ''), 'placeholder' => 'End Date']) }}
             {!! $errors->first('end_date', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
@@ -37,12 +37,11 @@
         </div>
 
         <div class="form-group">
-            {{ Form::label('fecha_inicio') }}
-            {{ Form::text('fecha_inicio', $task->fecha_inicio, ['class' => 'form-control' . ($errors->has('fecha_inicio') ? ' is-invalid' : ''), 'placeholder' => 'fecha_inicio']) }}
-            {!! $errors->first('fecha_inicio', '<div class="invalid-feedback">:message</div>') !!}
+            <label for="start_date">Fecha de inicio</label>
+            <input type="text" class="form-control flatpickr" name="start_date">
         </div>
         <form method="POST" action="{{ route('tasks.store') }}" enctype="multipart/form-data">
-            <input type="file" name="subir_archivos">
+            <input type="file" name="upload_files">
         </form>
 
 
@@ -52,3 +51,4 @@
         <button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
     </div>
 </div>
+

@@ -42,11 +42,11 @@
                         </div>
                         <div class="form-group">
                             <strong>Statuses:</strong>
-                            {{ $task->fecha_inicio }}
+                            {{ $task->start_date }}
                         </div>
                         <div class="form-group">
                             <strong>Statuses:</strong>
-                            {{ $task->subir_archivos }}
+                            {{ $task->upload_files }}
                         </div>
 
                     </div>
