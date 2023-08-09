@@ -38,6 +38,7 @@ class TaskController extends Controller
         return view('task.create', compact('task', 'statuses'));
     }
 
+    
     /**
      * Store a newly created resource in storage.
      *
@@ -54,9 +55,10 @@ class TaskController extends Controller
         if ($request->hasFile('subir_archivos')) {
             $archivo = $request->file('subir_archivos');
             $nombreArchivo = $archivo->getClientOriginalName(); // Obtener el nombre original del archivo
-            $path = $archivo->storeAs('archivos', $nombreArchivo, 'public'); // Almacenar el archivo con su nombre original
-            $validatedData['subir_archivos'] = $path; // Almacenar la ruta del archivo en la base de datos
+            $path = $archivo->storeAs('public/archivos', $nombreArchivo); // Almacenar el archivo con su nombre original en storage/app/public/archivos
         }
+
+        
 
         $task = Task::create($request->all());
 

@@ -19,9 +19,9 @@ class TasksTable extends Migration
             $table->string('description');
             /* $table->string('id_developer');
             $table->string('id_statuses'); */
-            $table->string('end_date');
-            $table->string('fecha_inicio')->nullable(); // Agregar campo 'fecha_inicio'
-            $table->text('subir_archivos'); // Agregar campo 'subir_archivos'
+            $table->date('end_date');
+            $table->date('start_date')->nullable(); // Agregar campo 'fecha_inicio'
+            $table->text('upload files'); // Agregar campo 'subir_archivos'
             $table->timestamps();
             /*$table->string('fecha inicio ');
             $table->string('subir archivos');*/

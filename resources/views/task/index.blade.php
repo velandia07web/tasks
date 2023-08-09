@@ -28,6 +28,10 @@
                             <p>{{ $message }}</p>
                         </div>
                     @endif
+
+                   
+    <!-- ... otros datos de la tarea ... -->
+    
                     
                     <div class="card-body">
                         <div class="table-responsive">
@@ -43,8 +47,9 @@
 										<th>Statuses</th>
                                         <th>fecha_inicio</th>
 										<th>subir_archivos</th>
-
                                         <th></th>
+                                        <th>Tiempo restante</th>
+                                        <th>Tiempo finalizacion</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -64,10 +69,39 @@
                                                 <form action="{{ route('tasks.destroy',$task->id) }}" method="POST">
                                                     <a class="btn btn-sm btn-primary " href="{{ route('tasks.show',$task->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
                                                     <a class="btn btn-sm btn-success" href="{{ route('tasks.edit',$task->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
+                                                    @if($task->subir_archivos)
+                                                    <a href="{{ asset('storage/' . $task->subir_archivos) }}" target="_blank">Ver archivo</a>
+                                                @endif
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>
+                                                    
                                                 </form>
+                                            </td>
+
+                                            <td>
+                                                @php
+                                                    $fechaInicio = new DateTime($task->fecha_inicio);
+                                                    $fechaActual = new DateTime();
+                                                    
+                                                    if ($fechaInicio < $fechaActual) {
+                                                        $tiempoRestante = '0';
+                                                    } else {
+                                                        $interval = $fechaInicio->diff($fechaActual);
+                                                        $tiempoRestante = $interval->format('%a días, %h horas, %i minutos');
+                                                    }
+                                                @endphp
+                                                {{ $tiempoRestante }}
+                                            </td>
+
+                                            <td>
+                                                @php
+                                                    $fechaInicio = new DateTime($task->end_date);
+                                                    $fechaActual = new DateTime();
+                                                    $interval = $fechaInicio->diff($fechaActual);
+                                                    $Tiempofinalizacion = $interval->format('%a días, %h horas, %i minutos');
+                                                @endphp
+                                                {{ $Tiempofinalizacion }}
                                             </td>
                                         </tr>
                                     @endforeach
