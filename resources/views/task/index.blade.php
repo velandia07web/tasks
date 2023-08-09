@@ -1,5 +1,6 @@
 @extends('layouts.app')
-
+ <!-- Font Awesome -->
+ <link href="carp/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 @section('template_title')
     Task
 @endsection
@@ -12,11 +13,11 @@
                 <div class="card-header">
                     <div style="display: flex; justify-content: space-between; align-items: center;">
                         <span id="card_title">
-                            {{ __('Task') }}
+                            {{ __('Inicio') }}
                         </span>
                         <div class="float-right">
                             <a href="{{ route('tasks.create') }}" class="btn btn-primary btn-sm" data-placement="left">
-                                {{ __('Create New') }}
+                                {{ __('Crear nueva tarea') }}
                             </a>
                         </div>
                     </div>
@@ -30,13 +31,13 @@
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-striped table-hover">
-                            <thead class="thead">
+                            <thead class="thead-dark">
                                 <tr>
-                                    <th>No</th>
-                                    <th>Title</th>
-                                    <th>Statuses</th>
-                                    <th>Tiempo Restante</th>
-                                    <th>Tiempo Finalización</th>
+                                    <th>Id</th>
+                                    <th>Tarea</th>
+                                    <th>Estados</th>
+                                    <th>Tiempo para iniciar</th>
+                                    <th>Tiempo que Finalizo</th>
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
@@ -77,20 +78,20 @@
                                     <td>
                                         <form action="{{ route('tasks.destroy',$task->id) }}" method="POST">
                                             <a class="btn btn-sm btn-primary" href="{{ route('tasks.show',$task->id) }}">
-                                                <i class="fa fa-fw fa-eye"></i> {{ __('Show') }}
+                                                <i class="fa fa-fw fa-eye"></i> {{ __('Detalles') }}
                                             </a>
                                             <a class="btn btn-sm btn-success" href="{{ route('tasks.edit',$task->id) }}">
-                                                <i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}
+                                                <i class="fa fa-fw fa-edit"></i> {{ __('Editar') }}
                                             </a>
                                             @if($task->start_date)
-                                            <a href="{{ asset('storage/' . $task->start_date) }}" target="_blank" class="btn btn-sm btn-info">
-                                                <i class="fa fa-file-pdf"></i> Pdf
+                                            <a href="{{ asset('storage/' . $task->start_date) }}" target="_blank" >
+                                                <i class="fa-light fa-file-pdf"></i>
                                             </a>
                                             @endif
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger btn-sm">
-                                                <i class="fa fa-fw fa-trash"></i> {{ __('Delete') }}
+                                                <i class="fa fa-fw fa-trash"></i> {{ __('Eliminar') }}
                                             </button>
                                         </form>
                                     </td>
@@ -101,7 +102,7 @@
                     </div>
                 </div>
             </div>
-            {!! $tasks->links() !!}
+            //{!! $tasks->links() !!}
         </div>
     </div>
 </div>

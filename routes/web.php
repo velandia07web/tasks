@@ -27,3 +27,4 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::resource('/developers', DeveloperController::class);
 Route::resource('/statuses', StatusController::class);
 Route::resource('/tasks', TaskController::class);
+
