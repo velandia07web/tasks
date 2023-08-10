@@ -8,7 +8,7 @@
 @section('content')
     <section class="content container-fluid">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-4" id="create">
 
                 @includeif('partials.errors')
 

@@ -7,21 +7,21 @@
 @section('content')
     <section class="content container-fluid">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-6" id="table">
                 <div class="card">
                     <div class="card-header">
                         <div class="float-left">
-                            <span class="card-title">{{ __('Show') }} Status</span>
+                            <span class="card-title">{{ __('Ver') }} estados</span>
                         </div>
                         <div class="float-right">
-                            <a class="btn btn-primary" href="{{ route('statuses.index') }}"> {{ __('Back') }}</a>
+                            <a class="btn btn-primary" href="{{ route('statuses.index') }}"> {{ __('Atras') }}</a>
                         </div>
                     </div>
 
                     <div class="card-body">
                         
                         <div class="form-group">
-                            <strong>Status:</strong>
+                            <strong>Estado:</strong>
                             {{ $status->status }}
                         </div>
 

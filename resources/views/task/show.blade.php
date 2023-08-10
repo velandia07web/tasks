@@ -7,7 +7,7 @@
 @section('content')
     <section class="content container-fluid">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-6" id="table">
                 <div class="card">
                     <div class="card-header">
                         <div class="float-left">
@@ -45,10 +45,10 @@
                             {{ $task->start_date }}
                         </div>
 
-                        <div class="form-group">
+                        <!--<div class="form-group">
                             <label for="report">Report:</label>
                             <p>{{ $task->Report }}</p>
-                        </div>              
+                        </div>  -->            
 
                         <div class="form-group">
                             <strong>Archivo:</strong>

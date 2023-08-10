@@ -7,13 +7,13 @@
 @section('content')
     <section class="content container-fluid">
         <div class="">
-            <div class="col-md-12">
+            <div class="col-md-4" id="create">
 
                 @includeif('partials.errors')
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">{{ __('Update') }} Status</span>
+                        <span class="card-title">{{ __('Editar') }} estado</span>
                     </div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('statuses.update', $status->id) }}"  role="form" enctype="multipart/form-data">

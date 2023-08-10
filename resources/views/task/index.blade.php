@@ -1,6 +1,6 @@
 @extends('layouts.app')
  <!-- Font Awesome -->
- <link href="carp/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+ 
 @section('template_title')
     Task
 @endsection
@@ -8,12 +8,12 @@
 @section('content')
 <div class="container-fluid">
     <div class="row">
-        <div class="col-sm-12">
+        <div class="col-sm-8" id="table">
             <div class="card">
                 <div class="card-header">
                     <div style="display: flex; justify-content: space-between; align-items: center;">
                         <span id="card_title">
-                            {{ __('Inicio') }}
+                            {{ __('Tareas') }}
                         </span>
                         <div class="float-right">
                             <a href="{{ route('tasks.create') }}" class="btn btn-primary btn-sm" data-placement="left">
@@ -102,7 +102,7 @@
                     </div>
                 </div>
             </div>
-            //{!! $tasks->links() !!}
+            {!! $tasks->links() !!}
         </div>
     </div>
 </div>

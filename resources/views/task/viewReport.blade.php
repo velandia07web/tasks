@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    {{ __('Ver Reporte de Tarea') }}
+    {{ __('Reporte de Tarea') }}
 @endsection
 
 @section('content')
@@ -20,8 +20,8 @@
                                 <textarea class="form-control" name="Report" rows="5">{{ $task->Report }}</textarea>
                             </div>
 
-                            <button type="submit" class="btn btn-primary">{{ __('Editar reporte') }}</button>
-                            <a href="{{ route('tasks.show', ['task' => $task->id]) }}" class="btn btn-secondary">{{ __('Cancelar') }}</a>
+                            <button type="submit" id="buttonReport" class="btn btn-primary">{{ __('Editar reporte') }}</button>
+                            <a href="{{ route('tasks.show', ['task' => $task->id]) }}"  id="buttonReport" class="btn btn-secondary">{{ __('Cancelar') }}</a>
                         </form>
                     </div>
                 </div>

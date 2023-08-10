@@ -1,5 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);
-@charset "UTF-8";
+/*@charset "UTF-8";*/
 /*!
  * Bootstrap  v5.3.1 (https://getbootstrap.com/)
  * Copyright 2011-2023 The Bootstrap Authors
@@ -443,6 +443,10 @@ label {
 
 button {
   border-radius: 0;
+}
+#buttonReport {
+  margin-top: 17px;
+  
 }
 
 button:focus:not(:focus-visible) {
@@ -4410,7 +4414,7 @@ textarea.form-control-lg {
   padding: var(--bs-card-cap-padding-y) var(--bs-card-cap-padding-x);
   margin-bottom: 0;
   color: var(--bs-card-cap-color);
-  background-color: var(--bs-card-cap-bg);
+  background-color: #4f81f3a1;
   border-bottom: var(--bs-card-border-width) solid var(--bs-card-border-color);
 }
 .card-header:first-child {
@@ -11972,3 +11976,11 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+
+
+
+
+
+
+
+ 
