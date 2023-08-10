@@ -27,4 +27,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::resource('/developers', DeveloperController::class);
 Route::resource('/statuses', StatusController::class);
 Route::resource('/tasks', TaskController::class);
+Route::get('/tasks/{id}/generateTaskReport', [TaskController::class, 'generateTaskReport'])->name('tasks.generateTaskReport');
+Route::get('/tasks/{id}/viewReport', [TaskController::class, 'viewReport'])->name('tasks.viewReport');
+Route::put('/tasks/{id}/updateReport', [TaskController::class, 'updateReport'])->name('tasks.updateReport');
 

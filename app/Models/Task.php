@@ -32,6 +32,7 @@ class Task extends Model
         'statuses' => 'required',
         'start_date'  => 'required',
         'upload_files' => 'required',
+        'Report' => 'required'
     ];
 
     protected $perPage = 20;
@@ -41,7 +42,7 @@ class Task extends Model
      *
      * @var array
      */
-    protected $fillable = ['title','description','end_date','developer','statuses','start_date','upload_files'];
+    protected $fillable = ['title','description','end_date','developer','statuses','start_date','upload_files','Report'];
 
 
     /**

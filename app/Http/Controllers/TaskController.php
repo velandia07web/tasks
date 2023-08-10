@@ -31,6 +31,20 @@ class TaskController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
+     /*public function generateTaskReport($id)
+     {
+         $users = User::findOrFail($id);
+         $tasks = Task::where('user_id', $users->id)->get();
+     
+         $pdf = PDF::loadView('task.taskReportPDF', compact('users','tasks'));
+         return $pdf->download('task_report.pdf');
+     }*/
+
+
+
+
     public function create()
     {
         $task = new Task();
@@ -48,12 +62,13 @@ class TaskController extends Controller
     public function store(Request $request)
     {
         request()->validate(Task::$rules,[
-            'fecha_inicio' => 'nullable|string',
-            'subir_archivos' => 'nullable|string',
+            'start_date' => 'nullable|string',
+            'Report' => 'nullable|string',
+            'upload_files' => 'nullable|string',
         ]);
 
-        if ($request->hasFile('subir_archivos')) {
-            $archivo = $request->file('subir_archivos');
+        if ($request->hasFile('upload_files')) {
+            $archivo = $request->file('upload_files');
             $nombreArchivo = $archivo->getClientOriginalName(); // Obtener el nombre original del archivo
             $path = $archivo->storeAs('public/archivos', $nombreArchivo); // Almacenar el archivo con su nombre original en storage/app/public/archivos
         }
@@ -65,6 +80,38 @@ class TaskController extends Controller
         return redirect()->route('tasks.index')
             ->with('success', 'Task created successfully.');
     }
+
+
+    public function viewReport($id)
+{
+    $task = Task::findOrFail($id);
+
+    // Aquí puedes pasar los datos necesarios para la vista del reporte en detalle
+    // Puedes usar compact() o un array asociativo, dependiendo de tus necesidades
+
+    return view('task.viewReport', compact('task'));
+}
+
+
+public function updateReport(Request $request, $id)
+{
+    $task = Task::findOrFail($id);
+
+    $request->validate([
+        'Report' => 'required|string',
+    ]);
+
+    $task->update([
+        'Report' => $request->input('Report'),
+    ]);
+
+    return redirect()->route('tasks.show', ['task' => $task->id])
+                     ->with('success', 'Reporte actualizado exitosamente.');
+}
+
+
+
+
 
     /**
      * Display the specified resource.

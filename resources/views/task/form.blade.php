@@ -42,9 +42,22 @@
             <label for="start_date">Fecha de inicio</label>
             <input type="text" class="form-control flatpickr" name="start_date" >
         </div>
-        <form method="POST" action="{{ route('tasks.store') }}" enctype="multipart/form-data">
-            <input type="file" name="upload_files">
-        </form>
+
+        <div class="form-group">
+            {{ Form::label('Reporte') }}
+            {{ Form::text('Report', $task->Report, ['class' => 'form-control' . ($errors->has('Report') ? ' is-invalid' : '')]) }}
+            {!! $errors->first('Report', '<div class="invalid-feedback">:message</div>') !!}
+        </div>
+
+        <div class="form-group">
+            <label for="upload_files">Subir Archivos</label>
+            <input type="file" name="upload_files" class="form-control{{ $errors->has('upload_files') ? ' is-invalid' : '' }}" required>
+            @if ($errors->has('upload_files'))
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $errors->first('upload_files') }}</strong>
+                </span>
+            @endif
+        </div>
 
 
 

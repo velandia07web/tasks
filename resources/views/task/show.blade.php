@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    {{ $task->name ?? "{{ __('Show') Task" }}
+    {{ $task->title ?? __('Show Task') }}
 @endsection
 
 @section('content')
@@ -11,44 +11,54 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="float-left">
-                            <span class="card-title">{{ __('Show') }} Task</span>
+                            <span class="card-title">{{ __('Detalles') }} Tareas</span>
                         </div>
                         <div class="float-right">
-                            <a class="btn btn-primary" href="{{ route('tasks.index') }}"> {{ __('Back') }}</a>
+                            <a class="btn btn-primary" href="{{ route('tasks.index') }}">{{ __('Atras') }}</a>
+                            <a class="btn btn-info" href="{{ route('tasks.viewReport', ['id' => $task->id]) }}">{{ __('Ver Reporte') }}</a>
                         </div>
                     </div>
 
                     <div class="card-body">
-                        
                         <div class="form-group">
-                            <strong>Title:</strong>
+                            <strong>Tarea:</strong>
                             {{ $task->title }}
                         </div>
                         <div class="form-group">
-                            <strong>Description:</strong>
+                            <strong>Descripciòn:</strong>
                             {{ $task->description }}
                         </div>
                         <div class="form-group">
-                            <strong>End Date:</strong>
+                            <strong>Fecha Entrega:</strong>
                             {{ $task->end_date }}
                         </div>
                         <div class="form-group">
-                            <strong>Developer:</strong>
+                            <strong>Desarrollador:</strong>
                             {{ $task->developer }}
                         </div>
                         <div class="form-group">
-                            <strong>Statuses:</strong>
+                            <strong>Estado:</strong>
                             {{ $task->statuses }}
                         </div>
                         <div class="form-group">
-                            <strong>Statuses:</strong>
+                            <strong>Fecha de inicio:</strong>
                             {{ $task->start_date }}
                         </div>
+
                         <div class="form-group">
-                            <strong>Statuses:</strong>
+                            <label for="report">Report:</label>
+                            <p>{{ $task->Report }}</p>
+                        </div>              
+
+                        <div class="form-group">
+                            <strong>Archivo:</strong>
                             {{ $task->upload_files }}
                         </div>
 
+                        <!-- Mostrar el informe en un iframe -->
+                        @if(isset($pdfContent))
+                        <iframe srcdoc="{{ $pdfContent }}" width="100%" height="500px"></iframe>
+                        @endif
                     </div>
                 </div>
             </div>
