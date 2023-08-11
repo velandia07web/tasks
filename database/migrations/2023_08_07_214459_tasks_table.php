@@ -22,7 +22,7 @@ class TasksTable extends Migration
             $table->date('end_date');
             $table->date('start_date')->nullable();
             $table->string('Report')->nullable(); // Agregar campo 'fecha_inicio'
-            $table->text('upload_files'); // Agregar campo 'subir_archivos'
+            $table->string('upload_files', 255)->nullable(); // Agregar campo 'subir_archivos'
             $table->timestamps();
             /*$table->string('fecha inicio ');
             $table->string('subir archivos');*/

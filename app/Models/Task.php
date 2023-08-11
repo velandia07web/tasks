@@ -46,19 +46,20 @@ class Task extends Model
 
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return \Illuminate\Database\Eloquent\Relations\belongsTo
      */
     public function developer()
     {
-        return $this->belongsTo('App\Models\Developer', 'id', 'developer');
+        //return $this->belongsTo('App\Models\Developer',  'developer');
+        return $this->belongsTo(Developer::class, 'developer');
     }
     
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function status()
     {
-        return $this->belongsTo('App\Models\Status', 'id', 'statuses');
+        return $this->belongsTo('App\Models\Status', 'statuses');
     }
     
 

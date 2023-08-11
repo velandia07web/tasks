@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 use App\Models\Status;
 use App\Models\Task;
+use App\Models\Developer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * Class TaskController
@@ -33,14 +35,7 @@ class TaskController extends Controller
      */
 
 
-     /*public function generateTaskReport($id)
-     {
-         $users = User::findOrFail($id);
-         $tasks = Task::where('user_id', $users->id)->get();
      
-         $pdf = PDF::loadView('task.taskReportPDF', compact('users','tasks'));
-         return $pdf->download('task_report.pdf');
-     }*/
 
 
 
@@ -49,7 +44,8 @@ class TaskController extends Controller
     {
         $task = new Task();
         $statuses = Status::all();
-        return view('task.create', compact('task', 'statuses'));
+        $developers = Developer::all();
+        return view('task.create', compact('task', 'statuses', 'developers'));
     }
 
     
@@ -69,16 +65,19 @@ class TaskController extends Controller
 
         if ($request->hasFile('upload_files')) {
             $archivo = $request->file('upload_files');
-            $nombreArchivo = $archivo->getClientOriginalName(); // Obtener el nombre original del archivo
-            $path = $archivo->storeAs('public/archivos', $nombreArchivo); // Almacenar el archivo con su nombre original en storage/app/public/archivos
+            $nombreArchivo = $archivo->getClientOriginalName();
+            $rutaArchivo = 'archivos/' . $nombreArchivo;
+
+            $archivo->storeAs('public/archivos', $nombreArchivo);
+
+            $task = Task::create(array_merge($request->all(), [
+                'upload_files' => $rutaArchivo,
+            ]));
+
+            return redirect()->route('tasks.index')
+                ->with('success', 'Task created successfully.');
         }
-
-        
-
-        $task = Task::create($request->all());
-
-        return redirect()->route('tasks.index')
-            ->with('success', 'Task created successfully.');
+    
     }
 
 
@@ -120,10 +119,14 @@ public function updateReport(Request $request, $id)
      * @return \Illuminate\Http\Response
      */
     public function show($id)
+    
     {
-        $task = Task::find($id);
+        
+    $task = Task::with('developer')->find($id);
+    $statuses = Status::all();
+    $developers = Developer::all(); 
 
-        return view('task.show', compact('task'));
+    return view('task.show', compact('task', 'statuses', 'developers'));
     }
 
     /**
@@ -136,7 +139,8 @@ public function updateReport(Request $request, $id)
     {
         $task = Task::find($id);
         $statuses = Status::all();
-        return view('task.edit', compact('task', 'statuses'));
+        $developers = Developer::all(); 
+        return view('task.edit', compact('task', 'statuses','developers'));
     }
 
     /**

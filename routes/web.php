@@ -30,4 +30,5 @@ Route::resource('/tasks', TaskController::class);
 Route::get('/tasks/{id}/generateTaskReport', [TaskController::class, 'generateTaskReport'])->name('tasks.generateTaskReport');
 Route::get('/tasks/{id}/viewReport', [TaskController::class, 'viewReport'])->name('tasks.viewReport');
 Route::put('/tasks/{id}/updateReport', [TaskController::class, 'updateReport'])->name('tasks.updateReport');
+Route::get('/tasks/view-pdf/{id}', 'TaskController@viewPdf')->name('tasks.viewPdf');
 

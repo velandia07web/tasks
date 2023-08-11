@@ -42,7 +42,7 @@ class Developer extends Model
      */
     public function tasks()
     {
-        return $this->hasMany('App\Models\Task', 'developer', 'id');
+        return $this->hasMany('App\Models\Task', 'developers');
     }
     
 

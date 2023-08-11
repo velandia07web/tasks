@@ -33,26 +33,34 @@
                             {{ $task->end_date }}
                         </div>
                         <div class="form-group">
-                            <strong>Desarrollador:</strong>
-                            {{ $task->developer }}
+                            <div class="form-group">
+                                <strong>Desarrollador:</strong>
+                                @if ($task->developer)
+                                    {{ ($task->developer) }}
+                                @else
+                                    Sin asignar
+                                @endif
+                            </div>
+                            
                         </div>
                         <div class="form-group">
                             <strong>Estado:</strong>
-                            {{ $task->statuses }}
+                            {{ $task->status->status }}
                         </div>
                         <div class="form-group">
                             <strong>Fecha de inicio:</strong>
                             {{ $task->start_date }}
                         </div>
 
-                        <!--<div class="form-group">
-                            <label for="report">Report:</label>
-                            <p>{{ $task->Report }}</p>
-                        </div>  -->            
+                              
 
                         <div class="form-group">
                             <strong>Archivo:</strong>
-                            {{ $task->upload_files }}
+                            @if ($task->upload_files)
+                            <a href="{{ Storage::url('public/' . $task->upload_files) }}" target="_blank">Ver PDF</a>
+                            @else
+                                <p>No se ha subido ningún archivo</p>
+                            @endif
                         </div>
 
                         <!-- Mostrar el informe en un iframe -->

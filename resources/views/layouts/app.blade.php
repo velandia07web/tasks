@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
@@ -7,85 +7,69 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>@yield('title', config('app.nam', 'Laravel'))</title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-    
+    <!-- Styles -->
+    <link href="https://cdn.jsdelivr.net/npm/admin-lte@3.2.0/dist/css/adminlte.min.css" rel="stylesheet">
+    <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
     <!-- Scripts -->
-    
+    <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-
-    <!-- Flatpickr Scripts  -->
-
-   
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
-    <!-- Styles -->
-    <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     
-
+    <!-- Incluir tus estilos personalizados -->
+    @stack('css')
 </head>
-<body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.nam', 'Gestor de tareas') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
-                        <a class="nav-link " href="{{ URL::to('tasks') }}">{{ __('Tareas') }}</a></i>
-                    <a class="nav-link" href="{{ URL::to('developers') }}">{{ __('Ver desarrolladores') }}</a>
-                    <a class="nav-link" href="{{ URL::to('statuses') }}">{{ __('Ver estados') }}</a>
-                    
-                     
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
-            </div>
+<body class="hold-transition sidebar-mini layout-fixed">
+    <div id="app" class="wrapper">
+        <!-- Navbar -->
+        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+            <!-- Navbar Content -->
         </nav>
 
-        
+        <!-- Barra lateral -->
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+            <!-- Contenido del menú lateral -->
+            <div class="sidebar">
+                <!-- Sidebar Content -->
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
+                    <!-- Menú -->
+                    <li class="nav-item">
+                        <a href="{{ URL::to('tasks') }}" class="nav-link">
+                            <i class="nav-icon fas fa-tasks"></i>
+                            <p>{{ __('Tareas') }}</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ URL::to('developers') }}" class="nav-link">
+                            <i class="nav-icon fas fa-users"></i>
+                            <p>{{ __('Ver desarrolladores') }}</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ URL::to('statuses') }}" class="nav-link">
+                            <i class="nav-icon fas fa-check-circle"></i>
+                            <p>{{ __('Ver estados') }}</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </aside>
 
-        <main class="py-4">
-            @yield('content')
-        </main>
+        <!-- Contenido principal -->
+        <div class="">
+            <section class="content">
+                <!-- Contenido de la vista -->
+                @yield('content')
+            </section>
+        </div>
     </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2.0/dist/js/adminlte.min.js"></script>
+    <!-- Incluir tus scripts personalizados -->
+    @stack('js')
 </body>
 </html>

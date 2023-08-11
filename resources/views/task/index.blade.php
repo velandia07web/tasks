@@ -31,7 +31,7 @@
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-striped table-hover">
-                            <thead class="thead-dark">
+                            <thead class="">
                                 <tr>
                                     <th>Id</th>
                                     <th>Tarea</th>
@@ -46,7 +46,7 @@
                                 <tr>
                                     <td>{{ ++$i }}</td>
                                     <td>{{ $task->title }}</td>
-                                    <td>{{ $task->statuses }}</td>
+                                    <td>{{ $task->status->status }}</td>
                                     <td>
                                         @php
                                         $startDate = new DateTime($task->start_date);
@@ -84,9 +84,7 @@
                                                 <i class="fa fa-fw fa-edit"></i> {{ __('Editar') }}
                                             </a>
                                             @if($task->start_date)
-                                            <a href="{{ asset('storage/' . $task->start_date) }}" target="_blank" >
-                                                <i class="fa-light fa-file-pdf"></i>
-                                            </a>
+                                            
                                             @endif
                                             @csrf
                                             @method('DELETE')
@@ -107,3 +105,4 @@
     </div>
 </div>
 @endsection
+

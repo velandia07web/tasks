@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    {{ $developer->name ?? "{{ __('Show') Developer" }}
+    {{ $developer->name ?? __('Show Developer') }}
 @endsection
 
 @section('content')

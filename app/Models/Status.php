@@ -38,7 +38,7 @@ class Status extends Model
      */
     public function tasks()
     {
-        return $this->hasMany('App\Models\Task', 'statuses', 'id');
+      return $this->hasMany('App\Models\Task', 'statuses');
     }
     
 
